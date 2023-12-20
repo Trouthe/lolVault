@@ -8,4 +8,8 @@
 $primary: #08081F;
 $secondary: #1C2039;
 
+%flex-row { display: flex; flex-direction: row; }
+%flex-column { display: flex; flex-direction: column; }
+%center { display: flex; align-items: center; }
+
 body { background-color: $primary; }

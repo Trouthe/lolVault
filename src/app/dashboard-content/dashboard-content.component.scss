@@ -1,0 +1,86 @@
+@use '../../styles.scss';
+
+$primary: #08081F;
+$secondary: #1C2039;
+$teritary: #282d44;
+$accent: #59CCE8;
+
+.acc-card {
+    @extend %flex-row;
+
+    padding-bottom: 0.5rem; padding-top: 0.5rem;
+
+    &:first-child { border-top: solid 1px rgba(255, 255, 255, 0.15); }
+    border-bottom: solid 1px rgba(255, 255, 255, 0.15);
+    
+    width: 100%;
+    .acc-icon {
+        @extend %flex-row;
+
+        position: relative;
+        
+        img {
+            width: 60px;
+            border-radius: 25%;
+            border: .15rem solid rgba(255, 255, 255, 0.25);
+        }
+
+        p {
+            font-size: 12px;
+            position: absolute;
+            bottom: -0.15rem; right: -.15rem;
+            padding-inline: 0.2rem;
+
+            background-color: $primary;
+            border-radius: 25%;
+            border: .15rem solid rgba(255, 255, 255, 0.25);
+        }
+    }
+
+    .server {
+        position: relative;
+        writing-mode: vertical-rl;
+        align-self: center;
+        padding-left: .25rem;
+        transform: rotate(180deg);
+        color: rgba(255, 255, 255, 0.25);
+    }
+
+    .variables {
+        @extend %flex-column;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+
+        padding-left: .75rem; padding-top: .25rem;
+
+        .name {
+            @extend %flex-row;
+        }
+
+        .rank {
+            @extend %flex-row;
+            margin-top: auto;
+
+            img {
+                width: 30px;
+            }
+
+            p {
+                margin-bottom: auto;
+            }
+        }
+        
+        p {
+            font-size: 14px;
+            margin-top: auto;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        span {
+            font-size: 12px;
+            align-self: center;
+            padding-left: .25rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+    }
+}

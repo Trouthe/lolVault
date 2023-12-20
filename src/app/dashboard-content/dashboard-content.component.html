@@ -1,10 +1,20 @@
-<div *ngFor="let x of mdb_data">
-    <p>{{ x.credentials.username }}</p>
-    <p>{{ x.credentials.password }}</p>
-    <br>
-    <p>{{ x.public.IGN }}</p>
-    <p>{{ x.public.server }}</p>
-</div>
-<div>
-    
+<div class="acc-card" *ngFor="let x of mdb_data; let i = index">
+    <p class="server">{{ x.public.server === 'euw1' ? 'europe' : 'america' }}</p>
+
+    <div class="acc-icon">
+        <img  src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/profileicon/{{ data![i]?.profileIconId }}.png" alt="">
+        <!-- <p>{{ data![i]?.summonerLevel }}</p> -->
+    </div>
+
+    <div class="variables">
+        <div class="name">
+            <h1>{{ x.public.name }}</h1>
+            <span>#{{ x.public.tag || x.public.server | uppercase}}</span>
+        </div>
+        <p>Lv. {{ data![i]?.summonerLevel }}</p>
+        <!-- <div class="rank">
+            <img src="https://opgg-static.akamaized.net/images/medals_new/diamond.png" alt="">
+            <p>Diamond IV</p>
+        </div> -->
+    </div>
 </div>

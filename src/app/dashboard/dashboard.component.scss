@@ -1,10 +1,9 @@
+@use '../../styles.scss';
+
+$primary: #08081F;
 $secondary: #1C2039;
 $teritary: #282d44;
 $accent: #59CCE8;
-
-%flex-row { display: flex; flex-direction: row; }
-%flex-column { display: flex; flex-direction: column; }
-%center { display: flex; align-items: center; }
 
 .active {
     background-color: $teritary;
@@ -78,7 +77,7 @@ $accent: #59CCE8;
     
     .r-side {
         @extend %flex-column;
-        @extend %center;
+        // @extend %center;
 
         background-color: $secondary;
         padding: 1rem;

@@ -14,5 +14,22 @@
       "pathRewrite": {
         "^/api/eun1": ""
       }
+    },
+    
+    "/api/europe": {
+      "target": "https://europe.api.riotgames.com",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api/europe": ""
+      }
+    },
+    "/api/americas": {
+      "target": "https://americas.api.riotgames.com",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api/americas": ""
+      }
     }
   }
