@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RiotService {
-  // Local
-  private champFileUrl = "../../assets/imp/champions.json";
+  private dataapi = '/lol/summoner/v4/summoners/by-name/';
 
   constructor(private http: HttpClient) { }
-  
-  // getRiot(): Observable<any[]> {
-    
-  // }
 
-  getChampions(): Observable<any[]> {
-    return this.http.get<any[]>(this.champFileUrl);
-  }
+  getData(server: string, name: string) {
+    const headers = new HttpHeaders().set('X-Riot-Token', environment.api);
+
+    let _result;
+    this.http.get('/api/' + server + this.dataapi + name, { headers }).subscribe(result => {
+      _result = result;
+      console.log(_result)
+    });
+  } 
 }

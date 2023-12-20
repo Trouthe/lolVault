@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'RGAPI-eab67407-e4c0-4516-a7e8-850957aedabe'
 };
 
 /*

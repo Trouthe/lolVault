@@ -5,12 +5,25 @@ import { RiotService } from '../riot.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, tap } from 'rxjs';
 
+// interface acc {
+//   credentials: {
+//     username: string;
+//     password: string;
+//   };
+
+//   public: {
+//     IGN: string;
+//     server: string;
+//   };
+// }
+
 @Component({
   selector: 'app-dashboard-content',
   templateUrl: './dashboard-content.component.html',
   styleUrls: ['./dashboard-content.component.scss']
 })
 export class DashboardContentComponent implements OnInit {
+  mdb_data?: any[];
   data!: any[];
 
   constructor(
@@ -19,10 +32,18 @@ export class DashboardContentComponent implements OnInit {
     private http: HttpClient
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.dataService.getData().subscribe((result) => {
-      this.data = result;
-      console.log(this.data);
+      this.mdb_data = result;
+      console.log(this.mdb_data);
+      
+      this.getInfo();
     });
+  }
+
+  getInfo(): void {
+    for (let i=0; i < this.mdb_data!.length; i++) {
+      this.riot.getData(this.mdb_data![i].public.server, this.mdb_data![i].public.IGN);
+    }
   }
 }
