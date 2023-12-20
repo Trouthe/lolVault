@@ -1,0 +1,24 @@
+<div class="dashboard">
+    <div class="l-side">
+        <div class="profile">
+            <img src="../../assets/Default_pfp.svg.png" alt="profile picture">
+            <h2>Username</h2>
+        </div>
+        <div class="properties">
+            <ul>
+                <li (click)="loadComponent('dashboard'); toggleActive('dashboard')"
+                    [class.active]="isActive('dashboard')">Dashboard</li>
+
+                <li (click)="loadComponent('profile'); toggleActive('profile')"
+                    [class.active]="isActive('profile')">Profile</li>
+                    
+                <li (click)="loadComponent('add-accounts'); toggleActive('add-accounts')"
+                    [class.active]="isActive('add-accounts')">Add Accounts</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="r-side">
+        <ng-container #componentContainer></ng-container>
+    </div>
+</div>

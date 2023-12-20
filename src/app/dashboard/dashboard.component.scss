@@ -1,0 +1,87 @@
+$secondary: #1C2039;
+$teritary: #282d44;
+$accent: #59CCE8;
+
+%flex-row { display: flex; flex-direction: row; }
+%flex-column { display: flex; flex-direction: column; }
+%center { display: flex; align-items: center; }
+
+.active {
+    background-color: $teritary;
+    border-left-width: 0.25rem;
+    border-color: $accent !important;
+}
+
+.dashboard {
+    font-family: 'Roboto', sans-serif;
+
+    margin: 2.5rem;
+    margin-inline: 12.5rem;
+
+    color: white;
+
+    @extend %flex-row;
+
+    .l-side {
+        @extend %flex-column;
+        
+        width: 45%;
+
+        .profile {
+            @extend %flex-column;
+            
+            background-color: $secondary;
+            margin-inline: 1rem;
+            padding: 1rem;
+    
+            img {
+                padding-top: .75rem; padding-bottom: .75rem;
+                width: 125px;
+                margin-inline: auto;
+            }
+    
+            h2 {
+                text-align: center;
+                font-weight: 500;
+                font-size: 20px;
+                margin-top: 1rem;
+            }
+        
+        }
+
+        .properties {
+            background-color: $secondary;
+            margin-top: 1rem;
+            margin-inline: 1rem;
+
+            ul {
+                font-size: 18px;
+
+                li {
+                    @extend %center;
+                    padding-left: 1rem;
+                    height: 3.5rem;
+
+                    border-left-width: 0.25rem;
+                    border-color: transparent;
+                }
+
+                li:hover { 
+                    @extend .active; 
+                    cursor: pointer;
+
+                    transition: all 175ms;
+                }
+            }
+        }
+    }
+    
+    .r-side {
+        @extend %flex-column;
+        @extend %center;
+
+        background-color: $secondary;
+        padding: 1rem;
+        width: 100%;
+    }
+}
