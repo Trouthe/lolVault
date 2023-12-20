@@ -1,8 +1,9 @@
 <div *ngFor="let x of data">
-    <p>{{ x.username }}</p>
-    <p>{{ x.password }}</p>
-    <p>{{ x.IGN }}</p>
-    <p>{{ x.server }}</p>
+    <p>{{ x.credentials.username }}</p>
+    <p>{{ x.credentials.password }}</p>
+    <br>
+    <p>{{ x.public.IGN }}</p>
+    <p>{{ x.public.server }}</p>
 </div>
 <div>
     
