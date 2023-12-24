@@ -11,6 +11,7 @@ export class RiotService {
   private name_api = '/lol/summoner/v4/summoners/by-name/';
   private uuid_api = '/lol/summoner/v4/summoners/by-puuid/';
   private find_uuid_api = '/riot/account/v1/accounts/by-riot-id/';
+  private ranked_api = '/lol/league/v4/entries/by-summoner/';
 
   constructor(private http: HttpClient) { }
 
@@ -36,4 +37,9 @@ export class RiotService {
       })
     );
   }
+
+  getRanked(server: string, puuid: string): Observable<any[]> {
+    const headers = new HttpHeaders().set('X-Riot-Token', environment.api);
+    return this.http.get<any[]>('/api/' + server + this.ranked_api + puuid, { headers });
+  } 
 }

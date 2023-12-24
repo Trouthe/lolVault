@@ -1,7 +1,7 @@
 // server.js
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 const { data } = require('autoprefixer');
 
 const app = express();
@@ -12,6 +12,7 @@ app.use(express.json());
 
 const uri = 'mongodb+srv://lolVault:L6CQlFwNcnijYHSF@vaultcluster.rxmzhoh.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const collection = client.db('Vault').collection('g_accs');
 
 async function connectToMongo() {
   try {
@@ -36,6 +37,23 @@ app.get('/api/data', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.delete('/api/data/:id', async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount === 1) {
+      res.json({ success: true });
+    } else {
+      res.status(404).json({ error: 'Entry not found' });
+    }
+  } catch (error) {
+    console.error('Error deleting entry:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

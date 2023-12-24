@@ -1,20 +1,59 @@
 <div class="acc-card" *ngFor="let x of mdb_data; let i = index">
-    <p class="server">{{ x.public.server === 'euw1' ? 'europe' : 'america' }}</p>
+    <div class="l-side">
+        <p class="server">{{ x.public.server === 'euw1' || 'eun1' ? 'europe' : 'america' }}</p>
 
-    <div class="acc-icon">
-        <img  src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/profileicon/{{ data![i]?.profileIconId }}.png" alt="">
-        <!-- <p>{{ data![i]?.summonerLevel }}</p> -->
+        <div class="acc-icon">
+            <img  src="https://ddragon.leagueoflegends.com/cdn/13.24.1/img/profileicon/{{ data![i]?.profileIconId }}.png" alt="">
+            <p>{{ data![i]?.summonerLevel }}</p>
+        </div>
+
+        <div class="variables">
+            <div class="name">
+                <p title="winstreak!" *ngIf="rankedInfo![i]?.hotStreak">🔥</p>
+                <h1>{{ x.public.name }}</h1>
+                <span>#{{ x.public.tag || x.public.server | uppercase}}</span>
+            </div>
+            
+            <div class="rank">
+                <img src="https://opgg-static.akamaized.net/images/medals_new/{{ rankedInfo![i]?.tier | lowercase}}.png" alt="">
+                <p>{{ rankedInfo![i]?.tier | titlecase }}
+                    <span *ngIf=" rankedInfo![i]?.tier !== 'CHALLENGER' && rankedInfo![i]?.tier !== 'MASTER' && rankedInfo![i]?.tier !== 'GRANDMASTER'">
+                        {{ rankedInfo![i]?.rank }}
+                    </span>
+                </p>
+            </div>
+        </div>
     </div>
 
-    <div class="variables">
-        <div class="name">
-            <h1>{{ x.public.name }}</h1>
-            <span>#{{ x.public.tag || x.public.server | uppercase}}</span>
+    <div class="r-side">
+        <div class="rank">
+            <p>
+                {{ rankedInfo![i]?.losses + rankedInfo![i]?.wins }} Games
+                /
+                {{ rankedInfo![i]?.leaguePoints }} LP
+            </p>
+            <div class="games">
+                <p>
+                    {{ rankedInfo![i]?.wins }} W
+                    /
+                    {{ rankedInfo![i]?.losses }} L
+                    /
+                    <span [style.color]="
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) < 50 ? 'rgb(190 18 60)' : 
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) >= 50 && 
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) < 60 ? 'white' : 
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) >= 60 && 
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) < 70 ? 'rgb(56 189 248)' : 
+                        (rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100) >= 70 ? 'rgb(250 204 21)' : 'transparent'
+                    ">
+                        {{ rankedInfo![i]?.wins / (rankedInfo![i]?.wins + rankedInfo![i]?.losses) * 100 | number:'1.0-0' }}%
+                    </span> WR
+                </p>
+            </div>
         </div>
-        <p>Lv. {{ data![i]?.summonerLevel }}</p>
-        <!-- <div class="rank">
-            <img src="https://opgg-static.akamaized.net/images/medals_new/diamond.png" alt="">
-            <p>Diamond IV</p>
-        </div> -->
+
+        <div class="controls">
+            <button (click)="removeEntry(x._id, i)">x</button>
+        </div>
     </div>
 </div>

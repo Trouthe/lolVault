@@ -5,8 +5,13 @@ $secondary: #1C2039;
 $teritary: #282d44;
 $accent: #59CCE8;
 
+.hot-streak::before {content: "🔥" }
+
+p, h1 { cursor: default }
 .acc-card {
     @extend %flex-row;
+
+    font-family: 'Roboto', sans-serif;
 
     padding-bottom: 0.5rem; padding-top: 0.5rem;
 
@@ -14,73 +19,103 @@ $accent: #59CCE8;
     border-bottom: solid 1px rgba(255, 255, 255, 0.15);
     
     width: 100%;
-    .acc-icon {
+    .l-side {
         @extend %flex-row;
 
-        position: relative;
-        
-        img {
-            width: 60px;
-            border-radius: 25%;
-            border: .15rem solid rgba(255, 255, 255, 0.25);
-        }
-
-        p {
-            font-size: 12px;
-            position: absolute;
-            bottom: -0.15rem; right: -.15rem;
-            padding-inline: 0.2rem;
-
-            background-color: $primary;
-            border-radius: 25%;
-            border: .15rem solid rgba(255, 255, 255, 0.25);
-        }
-    }
-
-    .server {
-        position: relative;
-        writing-mode: vertical-rl;
-        align-self: center;
-        padding-left: .25rem;
-        transform: rotate(180deg);
-        color: rgba(255, 255, 255, 0.25);
-    }
-
-    .variables {
-        @extend %flex-column;
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-
-        padding-left: .75rem; padding-top: .25rem;
-
-        .name {
+        width: 50%;
+        .acc-icon {
             @extend %flex-row;
-        }
-
-        .rank {
-            @extend %flex-row;
-            margin-top: auto;
-
+    
+            position: relative;
+            
             img {
-                width: 30px;
+                width: 60px;
+                border-radius: 25%;
+                border: .15rem solid rgba(255, 255, 255, 0.25);
             }
-
+    
             p {
-                margin-bottom: auto;
+                font-size: 12px;
+                position: absolute;
+                bottom: -0.15rem; right: -.15rem;
+                padding-inline: 0.2rem;
+    
+                background-color: $primary;
+                border-radius: 25%;
+                border: .15rem solid rgba(255, 255, 255, 0.25);
             }
         }
-        
-        p {
-            font-size: 14px;
-            margin-top: auto;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        span {
-            font-size: 12px;
+    
+        .server {
+            position: relative;
+            writing-mode: vertical-rl;
             align-self: center;
             padding-left: .25rem;
+            transform: rotate(180deg);
             color: rgba(255, 255, 255, 0.25);
+        }
+    
+        .variables {
+            @extend %flex-column;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+    
+            padding-left: .75rem; padding-top: .25rem;
+    
+            .name {
+                @extend %flex-row;
+    
+                h1 { font-weight: 600; }
+            }
+    
+            .rank {
+                @extend %flex-row;
+                margin-top: auto;
+    
+                img { width: 30px; }
+    
+                p, span {
+                    color: white;
+                    font-size: 14px;
+                    align-self: center;
+                }
+            }
+    
+            span {
+                font-size: 12px;
+                align-self: center;
+                padding-left: .25rem;
+                color: rgba(255, 255, 255, 0.25);
+            }
+        }
+    }
+
+    .r-side {
+        @extend %center;
+        justify-content: space-between;
+        width: 50%;
+        
+        .rank {
+            font-size: 15px;
+        }
+
+        .games {
+            @extend %flex-row;
+
+            font-size: 13px;
+        }
+
+        .controls {
+            button {
+                padding: 10px;
+                padding-inline: 17px;
+                border-radius: 5px;
+                color: rgb(190 18 60);
+                font-weight: bolder;
+            }
+            button:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
         }
     }
 }
